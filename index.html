@@ -1,24 +1,1652 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sneha Patil - Software Engineer Portfolio</title>
-    <meta name="description" content="Portfolio of Sneha Patil, a passionate Software Engineer specializing in scalable applications, AI/ML, and modern web technologies. View my work experience, projects, and technical expertise." />
-    <meta name="author" content="Lovable" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sneha Patil - Software Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Sneha Patil, a passionate Software Engineer specializing in cloud, scalable applications, and AI/ML.">
+  <style>
+    /* Apple-inspired Design System */
+    :root {
+      --background: hsl(0, 0%, 100%);
+      --foreground: hsl(212, 25%, 15%);
+      --card: hsl(0, 0%, 100%);
+      --card-foreground: hsl(212, 25%, 15%);
+      --card-glass: hsla(0, 0%, 100%, 0.8);
+      --primary: hsl(215, 100%, 50%);
+      --primary-foreground: hsl(0, 0%, 100%);
+      --primary-light: hsl(215, 100%, 60%);
+      --primary-dark: hsl(215, 100%, 40%);
+      --secondary: hsl(210, 20%, 96%);
+      --secondary-foreground: hsl(212, 25%, 15%);
+      --muted: hsl(210, 20%, 96%);
+      --muted-foreground: hsl(212, 15%, 50%);
+      --accent: hsl(210, 20%, 94%);
+      --accent-foreground: hsl(212, 25%, 15%);
+      --border: hsl(210, 20%, 92%);
+      --radius: 12px;
+      --gradient-hero: linear-gradient(135deg, hsl(215, 100%, 50%) 0%, hsl(240, 100%, 60%) 100%);
+      --gradient-card: linear-gradient(135deg, hsl(0, 0%, 100%) 0%, hsl(210, 20%, 98%) 100%);
+      --shadow-soft: 0 4px 6px -1px hsla(0, 0%, 0%, 0.1), 0 2px 4px -1px hsla(0, 0%, 0%, 0.06);
+      --shadow-medium: 0 10px 15px -3px hsla(0, 0%, 0%, 0.1), 0 4px 6px -2px hsla(0, 0%, 0%, 0.05);
+      --shadow-glow: 0 0 0 1px hsla(215, 100%, 50%, 0.1), 0 8px 25px hsla(215, 100%, 50%, 0.15);
+      --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    }
 
-    <meta property="og:title" content="05d1a4bc-b0d1-40ee-a809-7e0b6c554909" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    body {
+      font-family: var(--font-system);
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    /* Utility Classes */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .text-center { text-align: center; }
+    .text-primary { color: var(--primary); }
+    .text-muted { color: var(--muted-foreground); }
+
+    .card-gradient {
+      background: var(--gradient-card);
+    }
+
+    .glass-card {
+      backdrop-filter: blur(12px);
+      background: var(--card-glass);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .shadow-soft {
+      box-shadow: var(--shadow-soft);
+    }
+
+    .shadow-glow {
+      box-shadow: var(--shadow-glow);
+    }
+
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Animations */
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-up {
+      animation: fade-up 0.6s ease-out forwards;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: var(--card-glass);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--foreground);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--foreground);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title { font-size: 4.5rem; }
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-buttons {
+        justify-content: center;
+      }
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      border: none;
+      font-family: var(--font-system);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: var(--card-foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .hero-images {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-main-image {
+      width: 100%;
+      height: 384px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: var(--shadow-medium);
+    }
+
+    .hero-small-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .hero-small-image {
+      width: 100%;
+      height: 128px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      opacity: 0.8;
+    }
+
+    /* Section Styles */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      .section-title { font-size: 3rem; }
+    }
+
+    .section-subtitle {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      max-width: 600px;
+      margin: 0 auto 64px;
+    }
+
+    .bg-subtle {
+      background: var(--secondary);
+    }
+
+    /* Experience Section */
+    .experience-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .experience-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    .experience-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      .experience-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .experience-position {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .experience-company {
+      font-size: 1.125rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .experience-duration {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      background: var(--muted);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+
+    .experience-description {
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: hsla(215, 100%, 50%, 0.1);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+
+    /* Education Section */
+    .education-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    @media (min-width: 1024px) {
+      .education-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .education-card {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .education-image-container {
+      position: relative;
+    }
+
+    .education-image {
+      width: 100%;
+      height: 192px;
+      object-fit: cover;
+    }
+
+    .gpa-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: hsla(215, 100%, 50%, 0.9);
+      color: var(--primary-foreground);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .education-content {
+      padding: 32px;
+    }
+
+    .education-degree {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .education-institution {
+      font-size: 1.125rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .education-duration {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* Awards Section */
+    .awards-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .awards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .award-card {
+      padding: 24px;
+      border-radius: 16px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .award-icon {
+      width: 48px;
+      height: 48px;
+      background: hsla(215, 100%, 50%, 0.1);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .award-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+
+    .award-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .award-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+    }
+
+    .award-year {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: hsla(215, 100%, 50%, 0.1);
+      padding: 4px 8px;
+      border-radius: 9999px;
+    }
+
+    .award-org {
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .award-description {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    /* Certifications Section */
+    .certs-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .certs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .certs-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .cert-card {
+      padding: 24px;
+      border-radius: var(--radius);
+    }
+
+    .cert-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .cert-icon {
+      width: 40px;
+      height: 40px;
+      background: hsla(215, 100%, 50%, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+
+    .cert-date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: hsla(215, 100%, 50%, 0.1);
+      padding: 4px 8px;
+      border-radius: 9999px;
+    }
+
+    .cert-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cert-issuer {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-bottom: 8px;
+    }
+
+    .cert-level {
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: var(--accent);
+      color: var(--accent-foreground);
+      padding: 4px 8px;
+      border-radius: 9999px;
+      display: inline-block;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    @media (min-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .project-card {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .project-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+    }
+
+    .project-link {
+      width: 32px;
+      height: 32px;
+      background: hsla(215, 100%, 50%, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .project-link:hover {
+      background: hsla(215, 100%, 50%, 0.2);
+    }
+
+    .project-link svg {
+      width: 16px;
+      height: 16px;
+      color: var(--primary);
+    }
+
+    .project-description {
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+    }
+
+    /* Blog Section */
+    .blog-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .blog-card {
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .blog-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 24px;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .blog-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: hsla(215, 100%, 50%, 0.1);
+      padding: 4px 8px;
+      border-radius: 9999px;
+    }
+
+    .blog-date-info {
+      display: flex;
+      gap: 16px;
+      color: var(--muted-foreground);
+      font-size: 0.75rem;
+    }
+
+    .blog-date-info span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .blog-date-info svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .blog-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .blog-card:hover .blog-title {
+      color: var(--primary);
+    }
+
+    .blog-excerpt {
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+    }
+
+    .blog-read-more {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: transform 0.2s ease;
+    }
+
+    .blog-card:hover .blog-read-more {
+      transform: translateX(4px);
+    }
+
+    .blog-read-more svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .contact-form-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    .contact-form h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .form-row {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .form-row-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--background);
+      font-family: var(--font-system);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px hsla(215, 100%, 50%, 0.2);
+    }
+
+    .form-textarea {
+      resize: none;
+      min-height: 150px;
+    }
+
+    .contact-info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-info-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    .contact-info-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s ease;
+    }
+
+    .contact-info-item:hover {
+      background: hsla(215, 100%, 50%, 0.05);
+    }
+
+    .contact-info-icon {
+      width: 40px;
+      height: 40px;
+      background: hsla(215, 100%, 50%, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-info-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+
+    .contact-info-label {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .contact-info-value {
+      font-weight: 600;
+    }
+
+    .social-card {
+      padding: 32px;
+      border-radius: 16px;
+    }
+
+    .social-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      width: 48px;
+      height: 48px;
+      background: hsla(215, 100%, 50%, 0.1);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      background: hsla(215, 100%, 50%, 0.2);
+      transform: scale(1.1);
+    }
+
+    .social-link svg {
+      width: 24px;
+      height: 24px;
+      color: var(--foreground);
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    .footer-made {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+    }
+
+    .footer-made svg {
+      width: 16px;
+      height: 16px;
+      color: #ef4444;
+    }
+
+    .footer-copyright {
+      color: var(--muted-foreground);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="container">
+      <div class="nav-content">
+        <div class="nav-logo">Portfolio</div>
+        <div class="nav-links">
+          <a href="#home" class="nav-link">Home</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#education" class="nav-link">Education</a>
+          <a href="#awards" class="nav-link">Awards</a>
+          <a href="#certifications" class="nav-link">Certifications</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#blog" class="nav-link">Blog</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="mobile-menu-btn">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="animate-fade-up">
+          <h1 class="hero-title">Senior Software Engineer</h1>
+          <p class="hero-description">
+            Passionate about creating innovative solutions and building scalable applications 
+            that make a difference in people's lives.
+          </p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+        <div class="hero-images animate-fade-up" style="animation-delay: 0.2s;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="Professional Software Engineer" class="hero-main-image glass-card">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Work Experience</h2>
+        <p class="section-subtitle">Building innovative solutions across various industries and technologies</p>
+      </div>
+      <div class="experience-cards">
+        <div class="experience-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="experience-header">
+            <div>
+              <h3 class="experience-position">Senior Software Engineer</h3>
+              <p class="experience-company">Oracle</p>
+            </div>
+            <span class="experience-duration">Nov 2023 - Jan 2025</span>
+          </div>
+          <p class="experience-description">Led the E2E development of a microservice from the ground up to process Oracle’s 10M+ customers’ data using Python, FastAPI, OpenSearch, Apache Spark, GraphQL, Kubernetes and built Infrastructure as Code(IaC) using Terraform to simplify deployments in Oracle Cloud Infrastructure(OCI).
+            Architected microservices processing 6M+ customer records daily using Kubernetes, CI/CD, Docker ensuring high reliability and performance.
+            Contributed to the EU Sovereign Cloud project, securely storing sensitive data in the cloud, fully compliant with EU data privacy requirements, utilizing a complete stack of cloud solutions.
+            Built a file scanning service for vulnerability detection, managing their status through streamlined workflows, and providing APIs for secure integration with downstream systems.
+            Developed proof of concepts, documented, and presented architectural designs for cloud-based projects aimed at addressing complex business and technical challenges.
+            </p>
+          <div class="tech-tags">
+            <span class="tech-tag">OCI</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">Apache Spark</span>
+            <span class="tech-tag">OpenSearch</span>
+          </div>
+        </div>
+        <div class="experience-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="experience-header">
+            <div>
+              <h3 class="experience-position">Lead Software Engineer</h3>
+              <p class="experience-company">ElasticRun</p>
+            </div>
+            <span class="experience-duration">March 2022 - Nov 2023</span>
+          </div>
+          <p class="experience-description">Pioneered an API-driven payment service management system, successfully handling payments for 100K+ users per month, achieving a remarkable 70% reduction in system overload as monitored in ELK.
+            Spearheaded the development and deployment of the organization's first 3 microservices and SaaS.
+            Mentored and coached a team of 10 engineers and introduced best practices in architectural patterns, code reviews and reducing technical debt.
+            Managed multiple environments as a DevOps Administrator, ensuring application health at peak times.
+            Dually served as a Product Manager and reduced lead time for new feature requests by over 20%.
+            Featured Speaker in PowHer Talk and SheLeadsTheRun.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">API</span>
+            <span class="tech-tag">ERP</span>
+          </div>
+        </div>
+        <div class="experience-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="experience-header">
+            <div>
+              <h3 class="experience-position">Software Engineer</h3>
+              <p class="experience-company">ElasticRun</p>
+            </div>
+            <span class="experience-duration">Oct 2018 - March 2022</span>
+          </div>
+          <p class="experience-description">Conceptualized and documented architectural designs for e-commerce distribution products, successfully scaling them beyond 1M+ users per month.
+            Developed a scalable pricing model for 50K+ e-commerce item-categories featuring a real-time price prediction system that processed the model daily.
+            Developed an in-house report-building library with caching, blacklisting and replication mechanisms and open-sourced it.
+            Presented at International ERPNext Conference.            
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">API</span>
+            <span class="tech-tag">ERP</span>
+          </div>
+        </div>
+        <div class="experience-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="experience-header">
+            <div>
+              <h3 class="experience-position">Associate Analyst</h3>
+              <p class="experience-company">Jade Global</p>
+            </div>
+            <span class="experience-duration">July 2017 - Oct 2018</span>
+          </div>
+          <p class="experience-description">Implemented performance optimizations in SQL and PLSQL for large-scale deployments, resolving critical bottlenecks.
+            Orchestrated database design and modeling, handling an impressive 80M+ requests per day.
+            </p>
+          <div class="tech-tags">
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">Oracle ERP</span>
+            <span class="tech-tag">PLSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="bg-subtle">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">Academic foundation in computer science and continuous learning</p>
+      </div>
+      <div class="education-grid">
+        <div class="education-card glass-card hover-lift animate-fade-up">
+          <div class="education-image-container">
+            <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=300&fit=crop" alt="CU Boulder Campus" class="education-image">
+            <span class="gpa-badge">GPA: 4.0/4.0</span>
+          </div>
+          <div class="education-content">
+            <h3 class="education-degree">Master of Science in Computer Science</h3>
+            <p class="education-institution">University of Colorado Boulder</p>
+            <span class="education-duration">Jan 2025 - Present</span>
+            <p class="text-muted">Specializing in Artificial Intelligence and Machine Learning.</p>
+          </div>
+        </div>
+        <div class="education-card glass-card hover-lift animate-fade-up" style="animation-delay: 0.2s;">
+          <div class="education-image-container">
+            <img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&h=300&fit=crop" alt="GCE Campus" class="education-image">
+            <span class="gpa-badge">GPA: 4.0/4.0</span>
+          </div>
+          <div class="education-content">
+            <h3 class="education-degree">Bachelor of Engineering in Information Technology</h3>
+            <p class="education-institution">Government College of Engineering, Karad</p>
+            <span class="education-duration">June 2013 - May 2017</span>
+            <p class="text-muted">Major in Computer Science with focus on Software Engineering and Algorithms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section id="awards">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Awards & Recognition</h2>
+        <p class="section-subtitle">Recognition for excellence in software development and innovation</p>
+      </div>
+      <div class="awards-grid">
+        <div class="award-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="award-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <div>
+            <div class="award-header">
+              <h3 class="award-title">Gold Medal</h3>
+              <span class="award-year">2017</span>
+            </div>
+            <p class="award-org">Bachelors - Shivaji University</p>
+            <p class="award-description">Earned a Gold Medal during undergraduate studies for academic excellence.</p>
+          </div>
+        </div>
+        <div class="award-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="award-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <div>
+            <div class="award-header">
+              <h3 class="award-title">Gem Award</h3>
+              <span class="award-year">2023</span>
+            </div>
+            <p class="award-org">ElasticRun</p>
+            <p class="award-description">Recognized for outstanding contribution to product development and team leadership.</p>
+          </div>
+        </div>
+        <div class="award-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="award-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <div>
+            <div class="award-header">
+              <h3 class="award-title">Star Performer</h3>
+              <span class="award-year">2021</span>
+            </div>
+            <p class="award-org">ElasticRun</p>
+            <p class="award-description">Recognized for outstanding contribution to product development.</p>
+          </div>
+        </div>
+        <div class="award-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div class="award-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <div>
+            <div class="award-header">
+              <h3 class="award-title">Star Performer</h3>
+              <span class="award-year">2018</span>
+            </div>
+            <p class="award-org">ElasticRun</p>
+            <p class="award-description">Recognized for outstanding contribution to product development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="bg-subtle">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Certifications</h2>
+        <p class="section-subtitle">Continuous learning and professional development in cutting-edge technologies</p>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-card glass-card hover-lift animate-fade-up">
+          <div class="cert-header">
+            <div class="cert-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <span class="cert-date">2025</span>
+          </div>
+          <h3 class="cert-name">Google AI Essentials</h3>
+          <p class="cert-issuer">Google</p>
+        </div>
+        <div class="cert-card glass-card hover-lift animate-fade-up">
+          <div class="cert-header">
+            <div class="cert-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <span class="cert-date">2025</span>
+          </div>
+          <h3 class="cert-name">Foundations of Cybersecurity</h3>
+          <p class="cert-issuer">Google</p>
+        </div>
+        <div class="cert-card glass-card hover-lift animate-fade-up">
+          <div class="cert-header">
+            <div class="cert-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <span class="cert-date">2024</span>
+          </div>
+          <h3 class="cert-name">OCI Certified AI Foundations Associate</h3>
+          <p class="cert-issuer">Oracle Cloud Infrastructure</p>
+        </div>
+        <div class="cert-card glass-card hover-lift animate-fade-up">
+          <div class="cert-header">
+            <div class="cert-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <span class="cert-date">2024</span>
+          </div>
+          <h3 class="cert-name">OCI Certified Architect Associate</h3>
+          <p class="cert-issuer">Oracle Cloud Infrastructure</p>
+        </div>
+        <div class="cert-card glass-card hover-lift animate-fade-up">
+          <div class="cert-header">
+            <div class="cert-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+            </div>
+            <span class="cert-date">2023</span>
+          </div>
+          <h3 class="cert-name">OCI Certified Foundations Associate</h3>
+          <p class="cert-issuer">Oracle Cloud Infrastructure</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">A showcase of innovative solutions and technical expertise across various domains</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Wildfire Risk Prediction System" class="project-image">
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title">Wildfire Risk Prediction System</h3>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="#" class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-description">Engineered an advanced Machine Learning Gradient Boosting model to categorize U.S. regions by wildfire risk levels, leveraging spatio-temporal and environmental variables.
+              Architected a dynamic Streamlit application for real-time wildfire risk predictions, integrating historical fire datasets with geospatial features for enhanced decision-making.
+              Fine-tuned model performance through advanced techniques to mitigate class imbalance, delivering predictive insights to optimize resource allocation and support proactive disaster management strategies.
+              </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Machine Learning</span>
+              <span class="tech-tag">Streamlit</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Quantum Key Distribution Simulator" class="project-image">
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title">Quantum Key Distribution Simulator</h3>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="#" class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-description">Built an interactive BB84 protocol based QKD simulator using Qiskit and Streamlit to visualize quantum-secure key exchange.
+              Simulated quantum eavesdropping to demonstrate intrusion detection via measurement-induced error rates and enabled message encryption using quantum-generated keys to showcase real-world QKD applications.
+              Presented statistical diagnostics of key agreement rates to validate the integrity of quantum-secure exchanges.              
+              </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Quantum Computing</span>
+              <span class="tech-tag">Qiskit</span>
+              <span class="tech-tag">Streamlit</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card card-gradient shadow-soft hover-lift animate-fade-up">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="Content Based Video Retrieval" class="project-image">
+          </div>
+          <div class="project-content">
+            <div class="project-header">
+              <h3 class="project-title">Content Based Video Retrieval</h3>
+              <div class="project-links">
+                <a href="#" class="project-link">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="#" class="project-link">
+                  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-description">Conducted research on content-based video retrieval, developing methods to search videos using visual inputs instead of semantic metadata.
+              Engineered a multi-stage pipeline integrating video framing, face detection, face recognition, and SURF-based feature extraction for robust visual matching.
+              Evaluated the system’s ability to retrieve relevant videos through facial feature analysis, demonstrating improved retrieval accuracy for large and diverse video datasets.              
+              </p>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Matlab</span>
+              <span class="tech-tag">Hadoop</span>
+              <span class="tech-tag">SURF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="bg-subtle">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Latest Blog Posts</h2>
+        <p class="section-subtitle">Sharing insights, tutorials, and thoughts on software development and technology</p>
+      </div>
+      <div class="blog-grid">
+        <article class="blog-card glass-card hover-lift animate-fade-up">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=300&fit=crop" alt="Building Scalable Microservices" class="blog-image">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-category">Architecture</span>
+              <div class="blog-date-info">
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  March 15, 2024
+                </span>
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  8 min read
+                </span>
+              </div>
+            </div>
+            <h3 class="blog-title">Building Scalable Microservices with Node.js</h3>
+            <p class="blog-excerpt">Learn how to design and implement microservices architecture that can handle millions of requests with proper load balancing and fault tolerance.</p>
+            <div class="blog-read-more">
+              Read More
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </article>
+        <article class="blog-card glass-card hover-lift animate-fade-up" style="animation-delay: 0.1s;">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=300&fit=crop" alt="The Future of AI" class="blog-image">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-category">AI/ML</span>
+              <div class="blog-date-info">
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  March 8, 2024
+                </span>
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  6 min read
+                </span>
+              </div>
+            </div>
+            <h3 class="blog-title">The Future of AI in Software Development</h3>
+            <p class="blog-excerpt">Exploring how artificial intelligence is transforming the way we write code, debug applications, and optimize performance in modern software development.</p>
+            <div class="blog-read-more">
+              Read More
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </article>
+        <article class="blog-card glass-card hover-lift animate-fade-up" style="animation-delay: 0.2s;">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=300&fit=crop" alt="React Performance" class="blog-image">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-category">Frontend</span>
+              <div class="blog-date-info">
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  February 28, 2024
+                </span>
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  10 min read
+                </span>
+              </div>
+            </div>
+            <h3 class="blog-title">React Performance Optimization Techniques</h3>
+            <p class="blog-excerpt">Comprehensive guide to optimizing React applications for better performance, including code splitting, memoization, and virtual DOM best practices.</p>
+            <div class="blog-read-more">
+              Read More
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </article>
+        <article class="blog-card glass-card hover-lift animate-fade-up" style="animation-delay: 0.3s;">
+          <div style="overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=300&fit=crop" alt="Kubernetes in Production" class="blog-image">
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-category">DevOps</span>
+              <div class="blog-date-info">
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  February 20, 2024
+                </span>
+                <span>
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  12 min read
+                </span>
+              </div>
+            </div>
+            <h3 class="blog-title">Kubernetes in Production: Lessons Learned</h3>
+            <p class="blog-excerpt">Real-world insights from deploying and managing Kubernetes clusters in production environments, including common pitfalls and best practices.</p>
+            <div class="blog-read-more">
+              Read More
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="text-center animate-fade-up">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's discuss how we can work together.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form-card card-gradient shadow-soft animate-fade-up">
+          <h3>Send a Message</h3>
+          <form class="contact-form">
+            <div class="form-row form-row-2">
+              <div>
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input">
+              </div>
+              <div>
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <input type="text" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-info-section animate-fade-up" style="animation-delay: 0.2s;">
+          <div class="contact-info-card card-gradient shadow-soft">
+            <h3>Contact Information</h3>
+            <div class="contact-info-list">
+              <a href="mailto:connect.snehapatil@gmail.com" class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <p class="contact-info-label">Email</p>
+                  <p class="contact-info-value">connect.snehapatil@gmail.com</p>
+                </div>
+              </a>
+              <a href="tel:+19705666458" class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </div>
+                <div>
+                  <p class="contact-info-label">Phone</p>
+                  <p class="contact-info-value">+1 (970) 566-6458</p>
+                </div>
+              </a>
+              <div class="contact-info-item">
+                <div class="contact-info-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <p class="contact-info-label">Location</p>
+                  <p class="contact-info-value">Denver, CO, United States</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="social-card card-gradient shadow-soft">
+            <h3>Follow Me</h3>
+            <div class="social-links">
+              <a href="https://linkedin.com/in/sneha-patil1" target="_blank" class="social-link">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+              <a href="https://github.com/snehapatil1" target="_blank" class="social-link">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-made">
+          <span>Made with</span>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span>by a passionate Software Engineer</span>
+        </div>
+        <div class="footer-copyright">
+          © <span id="year"></span> All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Navigation scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-fade-up').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
 </html>
